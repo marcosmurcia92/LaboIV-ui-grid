@@ -24,7 +24,15 @@ angular
 
     $scope.mostrarMapa = function(row){
       console.info("HOLA SOY EL MAPA!",row);
+      $scope.map.name = row.entity.nombre;
+      $scope.map.latitud = row.entity.latitud;
+      $scope.map.longitud = row.entity.logitud;
     };
+
+    $scope.map = {};
+    $scope.map.name = "Placeholder";
+    $scope.map.latitud = "40.74";
+    $scope.map.longitud = "-74.18";
 
     function columnDefs () {
       return [

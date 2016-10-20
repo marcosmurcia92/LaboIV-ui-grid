@@ -1,7 +1,31 @@
+<div class="container">
+  <h3>{{titulo}}</h3>
+  <div class="row">
+    <div class="col-sm-6" style="background-color:yellow;">
+      <p>Lorem ipsum...</p>
+    </div>
+    <div class="col-sm-6" style="background-color:pink;">
+      <p>Sed ut perspiciatis...</p>
+    </div>
+  </div>
+</div>
+
 <div>
   <h3>{{titulo}}</h3>
-  <div ui-grid="gridOptions" class="myGrid"
-    ui-grid-pagination
-    ui-grid-resize-columns
-  ></div>
+  <div class="row">
+    <div class="col-sm-6">
+	  <div ui-grid="gridOptions" class="myGrid"
+	    ui-grid-pagination
+	    ui-grid-resize-columns
+	  ></div>
+    </div>
+    <div class="col-sm-6">
+	  <div>
+	  	<ng-map center="[{{map.latitud}}, {{map.longitud}}]">
+	  		<marker position = "[{{map.latitud}}, {{map.longitud}}]" title="{{map.name}}">
+	  		</marker>
+	  	</ng-map>
+	  </div>
+    </div>
+  </div>
 </div>
