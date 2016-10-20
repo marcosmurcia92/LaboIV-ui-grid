@@ -8,6 +8,7 @@ angular
     // Configuracion de la paginacion
     $scope.gridOptions.paginationPageSize = 25;
     $scope.gridOptions.rowHeight = 66;
+    $scope.gridOptions.enableHorizontalScrollbar = 2;
     $scope.gridOptions.columnDefs = columnDefs();
     // Activo la busqueda en todos los campos.
     $scope.gridOptions.enableFiltering = true;
@@ -37,20 +38,20 @@ angular
     function columnDefs () {
       return [
         { field: 'id', name: '#', width: 45},
-        { field: 'avatar', name: 'avatar',width: 70,
+        { field: 'avatar', name: 'avatar',minWidth: 70,
           cellTemplate:"<img width=\"60px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
         },
-        { field: 'foto', name: 'foto', 
+        { field: 'foto', name: 'foto',minWidth: 70, 
           cellTemplate:"<img width=\"60px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
         },
-        { field: 'nombre', name: 'nombre'
+        { field: 'nombre', name: 'nombre',minWidth: 70
           ,enableFiltering: false
         },
-        { field: 'apellido', name: 'apellido'},
-        { field: 'email', name: 'mail'},
-        { field: 'latitud', name: 'latitud'},
-        { field: 'logitud', name: 'longitud'},
-        { field: 'sexo', name: 'sexo'
+        { field: 'apellido', name: 'apellido',minWidth: 70},
+        { field: 'email', name: 'mail',minWidth: 150},
+        { field: 'latitud', name: 'latitud',minWidth: 70},
+        { field: 'logitud', name: 'longitud',minWidth: 70},
+        { field: 'sexo', name: 'sexo',minWidth: 85
         // filtro de busqueda.
           ,filter: {
             // term: '1',
@@ -63,11 +64,11 @@ angular
           //filtro de los datos
           ,cellFilter: 'sexoTP'
         },
-        { field: 'fechaNacimiento', name: 'fechaNacimiento'
+        { field: 'fechaNacimiento', name: 'fechaNacimiento',minWidth: 100
           ,type: 'date'
           ,cellFilter: "date: 'dd-MM-yyyy'"
         },
-        { name: 'Mapas', 
+        { name: 'Mapas',minWidth: 70, 
            cellEditableCondition: false, 
            cellTemplate: '<button ng-click="grid.appScope.mostrarMapa(row)"> Mapa </button>' 
         }
