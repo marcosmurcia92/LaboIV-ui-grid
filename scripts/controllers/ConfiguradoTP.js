@@ -7,6 +7,7 @@ angular
     $scope.gridOptions.paginationPageSizes = [25, 50, 75];
     // Configuracion de la paginacion
     $scope.gridOptions.paginationPageSize = 25;
+    $scope.gridOptions.rowHeight = 66;
     $scope.gridOptions.columnDefs = columnDefs();
     // Activo la busqueda en todos los campos.
     $scope.gridOptions.enableFiltering = true;
@@ -16,6 +17,7 @@ angular
     data.data100().then(function(rta){
       // Cargo los datos en la grilla.
       $scope.gridOptions.data = rta;
+      console.log(rta);
     });
 
     console.log(uiGridConstants);
@@ -23,11 +25,11 @@ angular
     function columnDefs () {
       return [
         { field: 'id', name: '#', width: 45},
-        { field: 'titulo', name: 'ocupacion'
-          ,filter:{
-            condition: uiGridConstants.filter.STARTS_WITH,
-            placeholder: 'comienza con...'
-          }
+        { field: 'avatar', name: 'avatar',width: 70,
+          cellTemplate:"<img width=\"60px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
+        },
+        { field: 'foto', name: 'foto', 
+          cellTemplate:"<img width=\"60px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
         },
         { field: 'nombre', name: 'nombre'
           ,enableFiltering: false
