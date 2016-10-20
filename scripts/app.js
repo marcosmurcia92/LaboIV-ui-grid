@@ -10,7 +10,7 @@ angular
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('simple');
+    $urlRouterProvider.otherwise('configuradoTP');
     $stateProvider
 
     .state('simple', {
@@ -27,6 +27,11 @@ angular
       url: '/conf',
       templateUrl: 'views/config.html',
       controller:'ConfCtrl'
+    })
+    .state('configuradoTP', {
+      url: '/configuradoTP',
+      templateUrl: 'views/configuradoTP.html',
+      controller:'ConfTPCtrl'
     })
     .state('exportar', {
       url: '/exportar',
