@@ -22,6 +22,10 @@ angular
 
     console.log(uiGridConstants);
 
+    $scope.mostrarMapa = function(row){
+      console.info("HOLA SOY EL MAPA!",row);
+    };
+
     function columnDefs () {
       return [
         { field: 'id', name: '#', width: 45},
@@ -36,6 +40,8 @@ angular
         },
         { field: 'apellido', name: 'apellido'},
         { field: 'email', name: 'mail'},
+        { field: 'latitud', name: 'latitud'},
+        { field: 'logitud', name: 'longitud'},
         { field: 'sexo', name: 'sexo'
         // filtro de busqueda.
           ,filter: {
@@ -52,6 +58,10 @@ angular
         { field: 'fechaNacimiento', name: 'fechaNacimiento'
           ,type: 'date'
           ,cellFilter: "date: 'dd-MM-yyyy'"
+        },
+        { name: 'Mapas', 
+           cellEditableCondition: false, 
+           cellTemplate: '<button ng-click="grid.appScope.mostrarMapa(row)"> Mapa </button>' 
         }
       ];
     }
