@@ -31,7 +31,37 @@ angular
       $scope.map.name = row.entity.nombre;
       $scope.map.latitud = row.entity.latitud;
       $scope.map.longitud = row.entity.logitud;
+      $scope.mapMarkers.length = 0;
+      $scope.mapMarkers.push({
+        title: row.entity.nombre,
+        iconUrl: row.entity.avatar,
+        lat: row.entity.latitud,
+        lon: row.entity.logitud
+      });
     };
+
+
+    $scope.mostrarTodosAmigos = function(row){
+      console.info("HOLA SOY EL MAPA!",row);
+      $scope.map.name = row.entity.nombre;
+      $scope.map.latitud = row.entity.latitud;
+      $scope.map.longitud = row.entity.logitud;
+      $scope.mapMarkers.length = 0;
+      $scope.mapMarkers.push({
+        title: row.entity.nombre,
+        iconUrl: row.entity.avatar,
+        lat: row.entity.latitud,
+        lon: row.entity.logitud
+      });
+      for (var i = row.entity.amigos.length - 1; i >= 0; i--) {
+        $scope.mapMarkers.push({
+          title: row.entity.amigos[i].nombre,
+          iconUrl: row.entity.amigos[i].avatar,
+          lat: row.entity.amigos[i].latitud,
+          lon: row.entity.amigos[i].longitud
+        });
+      };
+    }
 
     $scope.mostrarAmigos = function(row){
       console.info("MUESTRO MIS AMIGOS",row);
@@ -42,6 +72,7 @@ angular
     $scope.map.name = "Placeholder";
     $scope.map.latitud = "40.74";
     $scope.map.longitud = "-74.18";
+    $scope.mapMarkers = [];
 
     function columnDefs () {
       return [
@@ -83,6 +114,10 @@ angular
         { name: 'Mapas',minWidth: 70, 
            cellEditableCondition: false, 
            cellTemplate: '<button ng-click="grid.appScope.mostrarMapa(row)"> Mapa </button>' 
+        },
+        { name: 'MapasAmigos',minWidth: 150, 
+           cellEditableCondition: false, 
+           cellTemplate: '<button ng-click="grid.appScope.mostrarTodosAmigos(row)"> Mapa+Amigos </button>' 
         }
       ];
     }
