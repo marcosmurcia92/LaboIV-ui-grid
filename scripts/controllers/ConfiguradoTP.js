@@ -1,6 +1,9 @@
 angular
   .module('app')
   .controller('ConfTPCtrl', function($scope, data, i18nService, uiGridConstants) {
+    ////////////////////////////////////////
+    //         GRILLA DE USUARIOS         //
+    ////////////////////////////////////////
     $scope.titulo = "Configuracion Campos";
     // Objeto de configuracion de la grilla.
     $scope.gridOptions = {};
@@ -30,6 +33,11 @@ angular
       $scope.map.longitud = row.entity.logitud;
     };
 
+    $scope.mostrarAmigos = function(row){
+      console.info("MUESTRO MIS AMIGOS",row);
+      $scope.gridOptionsAmigos.data = row.entity.amigos;
+    };
+
     $scope.map = {};
     $scope.map.name = "Placeholder";
     $scope.map.latitud = "40.74";
@@ -44,13 +52,17 @@ angular
         { field: 'foto', name: 'foto',minWidth: 70, 
           cellTemplate:"<img width=\"60px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
         },
-        { field: 'nombre', name: 'nombre',minWidth: 70
+        { name: 'Amigos',minWidth: 70, 
+           cellEditableCondition: false, 
+           cellTemplate: '<button ng-click="grid.appScope.mostrarAmigos(row)"> Amigos </button>' 
+        },
+        { field: 'nombre', name: 'nombre',minWidth: 90
           ,enableFiltering: false
         },
-        { field: 'apellido', name: 'apellido',minWidth: 70},
-        { field: 'email', name: 'mail',minWidth: 150},
-        { field: 'latitud', name: 'latitud',minWidth: 70},
-        { field: 'logitud', name: 'longitud',minWidth: 70},
+        { field: 'apellido', name: 'apellido',minWidth: 90},
+        { field: 'email', name: 'mail',minWidth: 200},
+        { field: 'latitud', name: 'latitud',minWidth: 90},
+        { field: 'logitud', name: 'longitud',minWidth: 90},
         { field: 'sexo', name: 'sexo',minWidth: 85
         // filtro de busqueda.
           ,filter: {
@@ -64,7 +76,7 @@ angular
           //filtro de los datos
           ,cellFilter: 'sexoTP'
         },
-        { field: 'fechaNacimiento', name: 'fechaNacimiento',minWidth: 100
+        { field: 'fechaNacimiento', name: 'fechaNacimiento',minWidth: 150
           ,type: 'date'
           ,cellFilter: "date: 'dd-MM-yyyy'"
         },
@@ -74,4 +86,59 @@ angular
         }
       ];
     }
+    /////////////////////////////////////////////////
+
+    ////////////////////////////////////////
+    //         GRILLA DE AMIGOS         //
+    ////////////////////////////////////////
+    $scope.tituloAmigos = "Amigos del Usuario";
+    // Objeto de configuracion de la grilla.
+    $scope.gridOptionsAmigos = {};
+    $scope.gridOptionsAmigos.paginationPageSizes = [25, 50, 75];
+    // Configuracion de la paginacion
+    $scope.gridOptionsAmigos.paginationPageSize = 25;
+    $scope.gridOptionsAmigos.rowHeight = 66;
+    $scope.gridOptionsAmigos.enableHorizontalScrollbar = 2;
+    $scope.gridOptionsAmigos.columnDefs = columnDefsAmigos();
+    // Activo la busqueda en todos los campos.
+    $scope.gridOptionsAmigos.enableFiltering = true;
+
+    $scope.mostrarMapaAmigos = function(row){
+      console.info("HOLA SOY EL MAPA!",row);
+      $scope.mapAmigos.name = row.entity.nombre;
+      $scope.mapAmigos.latitud = row.entity.latitud;
+      $scope.mapAmigos.longitud = row.entity.longitud;
+    };
+
+    $scope.mapAmigos = {};
+    $scope.mapAmigos.name = "Placeholder";
+    $scope.mapAmigos.latitud = "40.74";
+    $scope.mapAmigos.longitud = "-74.18";
+
+    function columnDefsAmigos () {
+      return [
+        { field: 'id', name: '#', width: 45},
+        { field: 'avatar', name: 'avatar',minWidth: 70,
+          cellTemplate:"<img width=\"60px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
+        },
+        { field: 'foto', name: 'foto',minWidth: 70, 
+          cellTemplate:"<img width=\"60px\" ng-src=\"{{grid.getCellValue(row, col)}}\" lazy-src>"
+        },
+        { field: 'nombre', name: 'nombre',minWidth: 90
+          ,enableFiltering: false
+        },
+        { field: 'apellido', name: 'apellido',minWidth: 90},
+        { field: 'latitud', name: 'latitud',minWidth: 90},
+        { field: 'longitud', name: 'longitud',minWidth: 90},
+        ,{ field: 'fechaNacimiento', name: 'fechaNacimiento',minWidth: 150
+          ,type: 'date'
+          ,cellFilter: "date: 'dd-MM-yyyy'"
+        },
+        { name: 'Mapas',minWidth: 70, 
+           cellEditableCondition: false, 
+           cellTemplate: '<button ng-click="grid.appScope.mostrarMapaAmigos(row)"> Mapa </button>' 
+        }
+      ];
+    }
+    /////////////////////////////////////////////////
   })
