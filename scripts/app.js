@@ -34,6 +34,11 @@ angular
       templateUrl: 'views/configuradoTP.html',
       controller:'ConfTPCtrl'
     })
+    .state('configuradoTPServicios', {
+      url: '/configuradoTPServicios',
+      templateUrl: 'views/configuradoTPServicios.html',
+      controller:'ConfTPSrvCtrl'
+    })
     .state('exportar', {
       url: '/exportar',
       templateUrl: 'views/exportar.html',
