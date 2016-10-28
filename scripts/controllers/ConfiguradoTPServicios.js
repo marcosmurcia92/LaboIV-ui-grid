@@ -194,15 +194,19 @@ angular
 
     console.info("Servicio Banderas", banderas);
 
-    banderas.traerUnPais('argentina').then(function(rta){
+    // banderas.traerUnPais('argentina').then(function(rta){
+    //   console.info("RESPUESTA BANDERAS",rta);
+    //   $scope.gridOptionsBanderas.data = rta;
+    // });
+
+    banderas.traerTodos().then(function(rta){
       console.info("RESPUESTA BANDERAS",rta);
       $scope.gridOptionsBanderas.data = rta;
     });
 
-    // banderas.traerTodos().then(function(rta){
-    //   console.info("RESPUESTA BANDERAS",rta);
-    //   $scope.gridOptionsBanderas.data = rta;
-    // });
+    banderas.traerSoloImagenes().then(function(rta){
+      console.info("RESPUESTA IMAGENES",rta);
+    });
 
     function columnDefsBanderas () {
       return [

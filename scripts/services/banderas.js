@@ -26,4 +26,12 @@ angular
         return data.data.Paises;
       });
     }
+
+    this.traerSoloImagenes = function(){
+      return $http.get(traerUrl()).then(function(data){
+        return data.data.Paises.map(function(pais){
+          return pais.Bandera;
+        });
+      });
+    };
   })
