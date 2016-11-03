@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .controller('ConfTPSrvCtrl', function($scope, data, banderas, i18nService, uiGridConstants) {
+  .controller('ConfTPFctSrvCtrl', function($scope, data, banderas, factoryBanderaSrv, i18nService, uiGridConstants) {
     ////////////////////////////////////////
     //         GRILLA DE USUARIOS         //
     ////////////////////////////////////////
@@ -40,6 +40,8 @@ angular
       });
     };
 
+
+    console.info("ACA ESTA LA FACTORY",factoryBanderaSrv);
 
     $scope.mostrarTodosAmigos = function(row){
       console.info("HOLA SOY EL MAPA!",row);
@@ -194,19 +196,18 @@ angular
 
     console.info("Servicio Banderas", banderas);
 
-    // banderas.traerUnPais('argentina').then(function(rta){
-    //   console.info("RESPUESTA BANDERAS",rta);
-    //   $scope.gridOptionsBanderas.data = rta;
-    // });
-
-    banderas.traerTodos().then(function(rta){
+    factoryBanderaSrv.TraerTodos().then(function(rta){
       console.info("RESPUESTA BANDERAS",rta.data.Paises);
       $scope.gridOptionsBanderas.data = rta.data.Paises;
     });
 
-    banderas.traerSoloImagenes().then(function(rta){
-      console.info("RESPUESTA IMAGENES",rta);
+    factoryBanderaSrv.TraerUnPais('Argentina').then(function(rta){
+       console.info("RESPUESTA BUSQUEDA",rta);
     });
+
+    // banderas.traerSoloImagenes().then(function(rta){
+    //   console.info("RESPUESTA IMAGENES",rta);
+    // });
 
     function columnDefsBanderas () {
       return [

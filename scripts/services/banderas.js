@@ -1,8 +1,8 @@
 angular
   .module('app')
-  .service('banderas', function ($http) {
+  .service('banderas', function ($http,factoryRutas) {
     this.traerUnPais = traerUnPais;
-    var url = 'http://www.egos27.somee.com/api/bandera/';
+    var url = factoryRutas.APIBanderas;
 
     function traerUnPais(pais){
       return $http.get(traerUrl(pais)).then(function(data){
@@ -22,9 +22,7 @@ angular
     this.nombre = "Banderas";
 
     this.traerTodos = function(){
-      return $http.get(traerUrl()).then(function(data){
-        return data.data.Paises;
-      });
+      return $http.get(traerUrl());
     }
 
     this.traerSoloImagenes = function(){

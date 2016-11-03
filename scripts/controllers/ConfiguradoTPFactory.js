@@ -201,7 +201,12 @@ angular
     //   $scope.gridOptionsBanderas.data = rta;
     // });
 
-    banderas.traerTodos().then(function(rta){
+    // banderas.traerTodos().then(function(rta){
+    //   console.info("RESPUESTA BANDERAS",rta);
+    //   $scope.gridOptionsBanderas.data = rta;
+    // });
+
+    factoryBandera.TraerTodos().then(function(rta){
       console.info("RESPUESTA BANDERAS",rta);
       $scope.gridOptionsBanderas.data = rta;
     });
