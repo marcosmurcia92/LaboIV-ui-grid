@@ -1,0 +1,55 @@
+<div>
+  <h3>{{titulo}}</h3>
+  <div class="row">
+    <div class="col-sm-6">
+	  <div ui-grid="gridOptions" class="myGrid"
+	    ui-grid-pagination
+	    ui-grid-resize-columns
+	  ></div>
+    </div>
+    <div class="col-sm-6">
+	  <div>
+	  	<ng-map center="[{{map.latitud}}, {{map.longitud}}]" zoom-to-include-markers="auto">
+	  		<!-- <marker position = "[{{map.latitud}}, {{map.longitud}}]" title="{{map.name}}">
+	  		</marker> -->
+	  		<custom-marker ng-repeat="p in mapMarkers" position="{{p.lat}},{{p.lon}}">
+	  			<div>
+	  				{{p.title}}
+	  				<img width="25" src="{{p.iconUrl}}" />
+	  			</div>
+  			</custom-marker>
+	  	</ng-map>
+	  </div>
+    </div>
+  </div>
+  <br>
+  <h3>{{tituloAmigos}}</h3>
+  <br>
+  <div class="row">
+    <div class="col-sm-6">
+	  <div ui-grid="gridOptionsAmigos" class="myGrid"
+	    ui-grid-pagination
+	    ui-grid-resize-columns
+	  ></div>
+    </div>
+    <div class="col-sm-6">
+	  <div>
+	  	<ng-map center="[{{mapAmigos.latitud}}, {{mapAmigos.longitud}}]">
+	  		<marker position = "[{{mapAmigos.latitud}}, {{mapAmigos.longitud}}]" title="{{mapAmigos.name}}">
+	  		</marker>
+	  	</ng-map>
+	  </div>
+    </div>
+  </div>
+  <br>
+  <h3>Banderas!!</h3>
+  <br>
+  <div class="row">
+  	<div class="col-sm-6">
+	  <div ui-grid="gridOptionsBanderas" class="myGrid"
+	    ui-grid-pagination
+	    ui-grid-resize-columns
+	  ></div>
+    </div>
+  </div>
+</div>
